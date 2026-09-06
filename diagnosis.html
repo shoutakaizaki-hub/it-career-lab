@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="20代ITエンジニア向け転職タイプ診断。現在の経験や希望からキャリアの方向性を確認できます。">
+  <meta name="description" content="20代ITエンジニア向け転職タイプ診断。現在の経験・仕事内容・学習状況・転職目的から、次に検討しやすいキャリア方向を整理します。">
   <title>20代ITエンジニア転職診断｜IT研究室</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/diagnosis.css">
 </head>
 <body>
   <header class="site-header">
@@ -22,11 +23,20 @@
     <div class="container narrow">
       <p class="eyebrow">Career Diagnosis</p>
       <h1>20代ITエンジニア転職診断</h1>
-      <p class="lead small">現在の経験や希望を選ぶと、検討しやすいキャリア方向を表示します。</p>
+      <p class="lead small">
+        現在の経験・仕事内容・学習状況・転職目的から、次に検討しやすいキャリア方向を整理します。
+      </p>
+      <p class="diagnosis-privacy">
+        入力内容はブラウザ内で判定し、この診断のためにサーバーへ送信しません。
+      </p>
 
       <form id="diagnosisForm" class="form-card">
+        <div class="diagnosis-progress" aria-hidden="true">
+          <span>9項目・約1分</span>
+        </div>
+
         <div class="form-group">
-          <label for="age">年齢</label>
+          <label for="age">1. 年齢</label>
           <select id="age" required>
             <option value="">選択してください</option>
             <option value="22-24">22〜24歳</option>
@@ -37,7 +47,7 @@
         </div>
 
         <div class="form-group">
-          <label for="experience">IT経験年数</label>
+          <label for="experience">2. IT経験年数</label>
           <select id="experience" required>
             <option value="">選択してください</option>
             <option value="0-1">1年未満</option>
@@ -48,31 +58,47 @@
         </div>
 
         <div class="form-group">
-          <label for="job">現在の職種</label>
+          <label for="job">3. 現在の職種</label>
           <select id="job" required>
             <option value="">選択してください</option>
             <option value="infra">インフラエンジニア</option>
-            <option value="ses">SES</option>
+            <option value="ses">SESエンジニア</option>
             <option value="developer">開発エンジニア</option>
-            <option value="ops">運用・保守</option>
+            <option value="ops">運用・保守エンジニア</option>
+            <option value="internal">社内SE</option>
             <option value="other">その他</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="target">希望する方向</label>
+          <label for="work">4. 現在の仕事内容</label>
+          <select id="work" required>
+            <option value="">選択してください</option>
+            <option value="monitoring">監視・定型オペレーション中心</option>
+            <option value="operation">運用・保守・障害対応中心</option>
+            <option value="build">構築・設定変更中心</option>
+            <option value="design">設計・要件整理など上流工程</option>
+            <option value="development">開発・実装中心</option>
+            <option value="mixed">複数工程を担当している</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="target">5. 希望する方向</label>
           <select id="target" required>
             <option value="">選択してください</option>
             <option value="cloud">クラウドエンジニア</option>
             <option value="upstream">設計・構築など上流工程</option>
             <option value="developer">開発エンジニア</option>
             <option value="salary">年収アップを優先</option>
+            <option value="internal">社内SE・自社側のIT職</option>
             <option value="undecided">まだ決めていない</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="salary">現在の年収</label>
+          <label for="salary">6. 現在の年収</label>
           <select id="salary" required>
             <option value="">選択してください</option>
             <option value="under300">300万円未満</option>
@@ -82,26 +108,106 @@
           </select>
         </div>
 
+        <div class="form-group">
+          <label for="purpose">7. 転職・キャリア見直しの目的</label>
+          <select id="purpose" required>
+            <option value="">選択してください</option>
+            <option value="skill">スキル・経験の幅を広げたい</option>
+            <option value="salary">年収を上げたい</option>
+            <option value="environment">働き方・職場環境を変えたい</option>
+            <option value="career">将来のキャリアを整理したい</option>
+            <option value="cloud">クラウド分野へ進みたい</option>
+            <option value="undecided">まだ整理できていない</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="study">8. 資格・学習・ハンズオン状況</label>
+          <select id="study" required>
+            <option value="">選択してください</option>
+            <option value="none">特に取り組んでいない</option>
+            <option value="studying">資格・技術を勉強中</option>
+            <option value="certified">関連資格を取得済み</option>
+            <option value="handson">個人開発・ハンズオン経験あり</option>
+            <option value="work">希望分野を業務でも経験している</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timing">9. 転職を考えている時期</label>
+          <select id="timing" required>
+            <option value="">選択してください</option>
+            <option value="asap">できるだけ早く</option>
+            <option value="3m">3か月以内</option>
+            <option value="6m">半年以内</option>
+            <option value="1y">1年以内</option>
+            <option value="undecided">まだ決めていない</option>
+          </select>
+        </div>
+
         <button class="btn btn-primary btn-full" type="submit">診断結果を見る</button>
       </form>
 
       <section id="result" class="result-card hidden" aria-live="polite">
         <p class="eyebrow">Your Result</p>
         <h2 id="resultTitle"></h2>
-        <p id="resultText"></p>
+        <p id="resultText" class="result-summary"></p>
+
+        <div class="diagnosis-scores">
+          <div class="score-card">
+            <div class="score-header">
+              <span>転職準備度</span>
+              <strong id="readinessScore">0</strong>
+            </div>
+            <div class="score-track" aria-hidden="true">
+              <span id="readinessBar"></span>
+            </div>
+            <p id="readinessLabel"></p>
+          </div>
+
+          <div class="score-card">
+            <div class="score-header">
+              <span>方向性スコア</span>
+              <strong id="directionScore">0</strong>
+            </div>
+            <div class="score-track" aria-hidden="true">
+              <span id="directionBar"></span>
+            </div>
+            <p>回答内容と判定されたキャリア方向の一致度の目安です。</p>
+          </div>
+        </div>
+
+        <div class="diagnosis-grid">
+          <div class="result-points">
+            <h3>現在の強み</h3>
+            <ul id="strengthsList"></ul>
+          </div>
+
+          <div class="result-points">
+            <h3>今後補いたいポイント</h3>
+            <ul id="issuesList"></ul>
+          </div>
+        </div>
 
         <div class="result-points">
-          <h3>次に確認したいこと</h3>
-          <ul id="resultPoints"></ul>
+          <h3>次にやること</h3>
+          <ol id="actionsList" class="action-list"></ol>
         </div>
 
         <div class="service-placeholder">
-          <p class="card-label">おすすめ転職サービス</p>
-          <p>提携承認後、このエリアに条件に合うサービスを2〜3社表示します。</p>
+          <p class="card-label">相性を確認したい転職サービスの種類</p>
+          <ul id="serviceTypes"></ul>
+          <p class="service-note">
+            特定サービスの掲載は、提携条件・対象者・掲載ルールを確認したうえで行います。
+          </p>
           <a class="btn btn-secondary" href="compare.html">サービス比較を見る</a>
         </div>
 
-        <p class="note">本診断は一般的な情報をもとにした簡易判定で、転職結果・年収アップ等を保証するものではありません。</p>
+        <button id="retryButton" class="diagnosis-retry" type="button">回答を変更してもう一度診断する</button>
+
+        <p class="note">
+          本診断は一般的なキャリア整理のための目安です。転職の成功、内定、年収アップ等を保証するものではありません。
+        </p>
       </section>
     </div>
   </main>
