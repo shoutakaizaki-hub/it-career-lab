@@ -58,11 +58,13 @@ test('HTML choices match validation and controller handles submit, edits and ret
     assert.ok(!elements[id], `duplicate id ${id}`);
     const classes = new Set(id === 'result' ? ['hidden'] : []);
     elements[id] = {value:base[id], textContent:'', children:[], listeners:{},
-      classList:{contains:x=>classes.has(x),add:x=>classes.add(x),remove:x=>classes.delete(x)},
+      classList:{contains:x=>classes.has(x),add:x=>classes.add(x),remove:x=>classes.delete(x),toggle(x,force){force ? classes.add(x) : classes.delete(x);}},
       addEventListener(event,fn){this.listeners[event]=fn;},
       replaceChildren(...children){this.children=children;},
+      appendChild(child){this.children.push(child);},
       focus(){focused=id;},scrollIntoView(){},reportValidity(){return this.valid !== false;}};
   }
+  elements.internalAffiliateTemplate.content = {cloneNode:()=>({type:'affiliate-fragment'})};
   for (const [key,values] of Object.entries(choices)) {
     const select = html.match(new RegExp(`<select id="${key}"[^>]*>([\\s\\S]*?)</select>`));
     assert.ok(select,key);
@@ -81,12 +83,16 @@ test('HTML choices match validation and controller handles submit, edits and ret
   assert.equal(focused,'resultTitle');
   assert.equal(elements.result.classList.contains('hidden'),false);
   assert.ok(elements.reasonsList.children.length);
+  assert.ok(elements.internalAffiliate.classList.contains('hidden'));
+  assert.equal(elements.internalAffiliate.children.length,0);
   elements.target.value='internal';
   form.listeners.change();
   assert.ok(elements.result.classList.contains('hidden'));
   assert.match(elements.diagnosisStatus.textContent,/再診断/);
   form.listeners.submit({preventDefault(){}});
   assert.match(elements.resultTitle.textContent,/社内SE/);
+  assert.equal(elements.internalAffiliate.classList.contains('hidden'),false);
+  assert.equal(elements.internalAffiliate.children.length,1);
   elements.retryButton.listeners.click();
   assert.equal(focused,'age');
   assert.equal(elements.target.value,'internal');
