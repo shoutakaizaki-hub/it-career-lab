@@ -253,7 +253,8 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
   line-height: 0;
 }
 
-.affiliate-banner img[width="300"] {
+.affiliate-banner img[width="300"],
+.affiliate-banner img[width="468"] {
   display: block;
   max-width: 100%;
   height: auto;
@@ -307,3 +308,7 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
   .section { padding: 52px 0; }
   .form-card, .result-card, .article { padding: 20px; }
 }
+
+.diagnosis-affiliate { grid-template-columns: minmax(0, 1fr); }
+.affiliate-banner { min-width: 0; max-width: 100%; }
+.affiliate-text { overflow-wrap: anywhere; }
