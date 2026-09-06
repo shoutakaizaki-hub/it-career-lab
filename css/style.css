@@ -236,6 +236,30 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
   border-radius: 14px;
 }
 
+.affiliate-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  margin: 28px 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.affiliate-banner {
+  line-height: 0;
+}
+
+.affiliate-banner img[width="300"],
+.affiliate-banner img[width="468"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .notice {
   padding: 20px 22px;
   margin: 26px 0;
@@ -272,6 +296,8 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
   .hero-grid, .card-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 54px; }
   .cta-panel, .footer-grid { align-items: flex-start; flex-direction: column; }
+  .affiliate-card { grid-template-columns: 1fr; }
+  .affiliate-banner { justify-self: center; }
 }
 
 @media (max-width: 560px) {
@@ -282,3 +308,7 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
   .section { padding: 52px 0; }
   .form-card, .result-card, .article { padding: 20px; }
 }
+
+.diagnosis-affiliate { grid-template-columns: minmax(0, 1fr); }
+.affiliate-banner { min-width: 0; max-width: 100%; }
+.affiliate-text { overflow-wrap: anywhere; }

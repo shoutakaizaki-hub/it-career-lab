@@ -33,6 +33,12 @@
       document.getElementById(id).textContent = data[key];
     }
     for (const [id, key] of Object.entries({reasonsList:'reasons', strengthsList:'strengths', issuesList:'issues', actionsList:'actions', serviceTypes:'services'})) fillList(id, data[key]);
+    const affiliate = document.getElementById('internalAffiliate');
+    affiliate.replaceChildren();
+    affiliate.classList.toggle('hidden', data.type !== 'internal');
+    if (data.type === 'internal') {
+      affiliate.appendChild(document.getElementById('internalAffiliateTemplate').content.cloneNode(true));
+    }
     result.classList.remove('hidden');
     status.textContent = '';
     moveTo(document.getElementById('resultTitle'));
