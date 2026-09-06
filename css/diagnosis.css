@@ -123,3 +123,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+#resultTitle, #diagnosisForm select { scroll-margin-top: 130px; }
+#resultTitle:focus-visible, .diagnosis-retry:focus-visible, #diagnosisForm :focus-visible {
+  outline: 3px solid #315ee7;
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
