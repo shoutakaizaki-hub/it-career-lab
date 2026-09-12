@@ -254,7 +254,9 @@ textarea { padding: 12px; min-height: 160px; resize: vertical; }
 }
 
 .affiliate-banner img[width="300"],
-.affiliate-banner img[width="468"] {
+.affiliate-banner img[width="468"],
+.affiliate-banner img[width="350"],
+.affiliate-banner img[width="336"] {
   display: block;
   max-width: 100%;
   height: auto;
